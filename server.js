@@ -1,7 +1,7 @@
 var http = require("http");
 var fs = require('fs');
 var url = require("url");
-var bodyparser = require('body-parser');
+
 
 function start() {
 	http.createServer(function(req, res) {
@@ -21,10 +21,12 @@ function start() {
 				}
 			});
 		} else if (req.method === "POST") {
-			var body = " "
+			console.log("post request received")
+			var body = " ";
 			req.on('data', function(data) {
 				body += data.toString("utf-8");
 			});
+			console.log(body);
 			req.on('end', function() {
 
 
@@ -36,7 +38,7 @@ function start() {
 					res.end("Success");
 
 				});
-			res.end();
+			//res.end();
 		});
 
 		} else if (req.method === "PUT") {
